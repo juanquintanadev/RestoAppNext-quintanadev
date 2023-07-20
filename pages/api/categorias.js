@@ -11,7 +11,6 @@ export default async function handler(req, res) {
         productos: true
       }
     })
-    console.log(categorias)
     res.status(200).json(categorias)
   } catch (error) {
     console.log(error)
