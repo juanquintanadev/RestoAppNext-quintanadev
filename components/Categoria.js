@@ -4,6 +4,7 @@ import Image from "next/image"
 function Categoria({categoria}) {
 
     const {handleClickCategoria, categoriaActual} = useQuiosco()
+    // console.log(categoria)
  
     const {nombre, icono, id} = categoria
 

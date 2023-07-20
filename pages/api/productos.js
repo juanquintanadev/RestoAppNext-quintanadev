@@ -6,13 +6,13 @@ export default async function handler(req, res) {
 
   const prisma = new PrismaClient()
   try {
-    const categorias = await prisma.categoria.findMany({
-      include: {
-        productos: true
-      }
+    const productos = await prisma.producto.findMany({
+      where: {
+        categoriaId: 1,
+      },
     })
-    console.log(categorias)
-    res.status(200).json(categorias)
+
+    res.status(200).json({productos})
   } catch (error) {
     console.log(error)
   }

@@ -22,7 +22,7 @@ const QuioscoProvider = ({children}) => {
     const obtenerCategorias = async () => {
         try {
             const {data} = await axios('/api/categorias')
-            setCategorias(data.categorias)
+            setCategorias(data)
         } catch (error) {
             console.log(error)
         }

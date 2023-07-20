@@ -6,7 +6,6 @@ function Sidebar() {
 
   const {categorias} = useQuiosco()
 
-
   return (
     <>
         <Image alt="imagen sidebar" width={300} height={100} src="/assets/img/logo.svg"/>
