@@ -21,7 +21,7 @@ const QuioscoProvider = ({children}) => {
 
     const obtenerCategorias = async () => {
         try {
-            const {data} = await axios('/api/categoria')
+            const {data} = await axios('/api/categorias')
             setCategorias(data.categorias)
         } catch (error) {
             console.log(error)
@@ -85,7 +85,7 @@ const QuioscoProvider = ({children}) => {
         try {
 
             // enviamos los datos al servidor
-            await axios.post('/api/orden',{
+            await axios.post('/api/ordenes',{
                 pedido,
                 nombre,
                 total,
