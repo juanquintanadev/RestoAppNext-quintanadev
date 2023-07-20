@@ -1,0 +1,54 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Producto {
+  
+  // damos el nombre a los elementos y que tipo de dato son
+  // ademas prisma tiene un atajo para ponerle por ej id
+  // ademas podemos poner el auto increment
+  id Int @id @default(autoincrement())
+  nombre String
+  precio Float
+  // vamos a guardar una ruta de la imagen, porque no es conveniente cargar la bd con imagenes para que no se llene y se corrompa
+  imagen String?
+  // colocamos el ? al final del tipo de dato para decirle a sql que este campo es opcionl
+  // por defecto todos los campos son obligatorios
+
+  // aca vamos a relacionar los dos modelos donde le decimos con que modelo lo vamos a realcionar y que campos vamos a relacionar, siempre tienen que tener el mismo tipo de datos
+  // creamos un campo con las mismas caracteristicas del campo del otro modelo
+  categoria Categoria @relation(fields: [categoriaId], references: [id])
+  categoriaId Int 
+  // en este caso estamos realcionando que cada producto va a tener una categoria
+}
+
+model Categoria {
+  id Int @id @default(autoincrement())
+  nombre String
+  icono String
+
+  // aca teneoms la realcion de categoria a produto
+  // tenemos multiples productos para cada categoria
+  // colocamos el [] para que sean multiples productos, seria una categoria con multiples productos
+  productos Producto[]
+}
+
+model Orden {
+  id Int @id @default(autoincrement())
+  nombre String
+  fecha String
+  total Float
+  // tipo objeto donde van los datos del pedido
+  pedido Json
+
+  // agregamos el estado si esta hecho o no
+  // valor por defecto que las ordenes no estan completas
+  estado Boolean @default(false)
+}
